@@ -1,0 +1,45 @@
+# -*- coding: utf-8 -*-
+# koword2vec.py
+
+import gensim
+import logging
+import multiprocessing
+
+
+# Model configuration for training
+config = {
+    'min_count': 1,  # Ignore a word if it is observed less than 'min_count' times
+    'size': 300,  # Number of hidden neurons; dimension of word embeddings
+    'sg': 1,  # 0: CBOW, 1: skip-gram
+    'hs': 1, # 0: None, 1: apply hierarchical softmax
+    'negative': 0, # negative sampling
+    'batch_words': 10000, # Number of words in a batch
+    'iter': 10,  # iteration
+    'window': 2, # window size (how many nearby words to be considered as context words)
+    'workers': multiprocessing.cpu_count() # If an error occurs, switch this to small integers
+}
+
+# -----------------------------------------------------------------------------------------
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+# -----------------------------------------------------------------------------------------
+print('[1] Begin reading sentences')
+sentences_vocab = gensim.models.word2vec.LineSentence('corpus.txt')
+sentences_train = gensim.models.word2vec.LineSentence('corpus.txt')
+print('==> Corpus reader set-up completed!')
+# -----------------------------------------------------------------------------------------
+print('[2] Set up a model for word2vec training')
+model = gensim.models.Word2Vec(**config)
+print('==> Model set-up completed!')
+# -----------------------------------------------------------------------------------------
+print('[3] Begin building vocabulary')
+model.build_vocab(sentences_vocab)
+print('==> Vocabulary building completed!')
+# -----------------------------------------------------------------------------------------
+print('[4] Begin training word vectors')
+model.train(sentences_train)
+print('==> Training of word embedding completed!')
+# -----------------------------------------------------------------------------------------
+print('Now saving model...')
+model.save('model_eojeol')
+print('==> Successfully saved!')
+# -----------------------------------------------------------------------------------------
