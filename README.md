@@ -32,13 +32,13 @@
 		$ python runWord2vec.py wiki.txt mdl_wiki
 	
 
-### 2) **word2vecTSNE.py**
+### 2) **runTSNE.py**
 	
 - Visualize your trained model by the following command:  
 	
-		$ python word2vecTSNE.py <model_name>
+		$ python runTSNE.py <model_name>
 	
 - For example:
 	
-		$ python word2vecTSNE.py mdl_wiki
+		$ python runTSNE.py mdl_wiki
 </br>
