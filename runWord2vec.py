@@ -19,12 +19,14 @@ config = {
     'workers': multiprocessing.cpu_count() # If an error occurs, switch this to small integers
 }
 
+corpus_fname = sys.argv[1]
+model_name = sys.argv[2]
 # -----------------------------------------------------------------------------------------
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 # -----------------------------------------------------------------------------------------
 print('[1] Begin reading sentences')
-sentences_vocab = gensim.models.word2vec.LineSentence('corpus.txt')
-sentences_train = gensim.models.word2vec.LineSentence('corpus.txt')
+sentences_vocab = gensim.models.word2vec.LineSentence(corpus_fname)
+sentences_train = gensim.models.word2vec.LineSentence(corpus_fname)
 print('==> Corpus reader set-up completed!')
 # -----------------------------------------------------------------------------------------
 print('[2] Set up a model for word2vec training')
@@ -40,6 +42,6 @@ model.train(sentences_train)
 print('==> Training of word embedding completed!')
 # -----------------------------------------------------------------------------------------
 print('Now saving model...')
-model.save('model_eojeol')
+model.save(model_name)
 print('==> Successfully saved!')
 # -----------------------------------------------------------------------------------------
