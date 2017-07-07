@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # koword2vec.py
 
+import sys
 import gensim
 import logging
 import multiprocessing
