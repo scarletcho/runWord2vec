@@ -39,7 +39,10 @@ model.build_vocab(sentences_vocab)
 print('==> Vocabulary building completed!')
 # -----------------------------------------------------------------------------------------
 print('[4] Begin training word vectors')
-model.train(sentences_train)
+try:
+	model.train(sentences_train)
+except ValueError:	# For newer version of Gensim
+	model.train(sentences_train, total_examples = model.corpus_count, epochs = model.iter)
 print('==> Training of word embedding completed!')
 # -----------------------------------------------------------------------------------------
 print('Now saving model...')
