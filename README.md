@@ -18,7 +18,7 @@
 
 ## Functionality
 - What can be done:
-	- Given a text file (a corpus which has one sentence per line) in the same directory as the script, you can train your own word embeddings using the following scripts which Gensim library.   
+	- Given a text file (a corpus which has one sentence per line) in the same directory as the script, you can train your own word embeddings using the following scripts using Gensim library.   
 </br>
 
 ## Usage
